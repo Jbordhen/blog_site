@@ -5,7 +5,6 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { Button, Card, Form } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
-import FormContainer from '../components/FormContainer'
 import storeContext from '../components/Store'
 
 const CreatePostScreen = () => {
