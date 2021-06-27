@@ -111,6 +111,7 @@ const UserListScreen = () => {
                             <Form
                                 onSubmit={(e) => {
                                     e.preventDefault()
+                                    setUsersPageNumber(1)
                                     setUsersPageSearch(value)
                                 }}
                                 className='d-flex flex-row-reverse flex-md-row'>
