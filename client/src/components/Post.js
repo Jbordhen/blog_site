@@ -23,7 +23,11 @@ const Post = ({ post }) => {
                     </div>
                 </Card.Header>
                 <Card.Body className='bg-gray'>
-                    <p>{post.description}</p>
+                    <Link
+                        to={`/post/${post.id}`}
+                        className='text-dark text-decoration-none'>
+                        <p>{post.description}</p>
+                    </Link>
                 </Card.Body>
             </Card>
         </Row>

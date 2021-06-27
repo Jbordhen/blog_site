@@ -14,10 +14,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $post = Post::with(['user'])->get();
-        return $post;
+        $count = $request->query('count', 0);
+        $post = Post::with(['user'])->latest()->skip($count * 10)->limit(10)->get();
+        return (Post::count() > $count * 2) ? $post : ['message' => 'You have reached the end.'];
     }
 
     /**
@@ -83,7 +84,7 @@ class PostController extends Controller
             ], 400);
         }
 
-        if($post->user_id!=auth()->user()->id){
+        if ($post->user_id != auth()->user()->id) {
             return response([
                 'error' => 'Not Allowed'
             ], 401);
