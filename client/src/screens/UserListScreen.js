@@ -34,7 +34,6 @@ const UserListScreen = () => {
         setUsersPageNumber
     } = useContext(storeContext)
 
-    let count = 0
     const [totalPages, setTotalPages] = useState(1)
 
     const [link, setLink] = useState()
@@ -69,8 +68,8 @@ const UserListScreen = () => {
                 const { data } = await axios.get(link)
                 setUsers(data.users)
                 setTotalPages(Math.ceil(data.totalPages))
-                // console.log(link)
-                // console.log('size' + usersPageSize)
+                // console.log('link ' + link)
+                // console.log('token' + token)
                 // console.log('field' + usersField)
                 // console.log('page#' + usersPageNumber)
                 // console.log('sort' + usersSorting)
@@ -122,7 +121,7 @@ const UserListScreen = () => {
                                     <Form.Control
                                         type='text'
                                         placeholder='Search'
-                                        value={value}
+                                        value={value ?? usersPageSearch}
                                         onChange={(e) =>
                                             setValue(e.target.value)
                                         }></Form.Control>
@@ -179,9 +178,9 @@ const UserListScreen = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {users.map((user) => (
+                                {users?.map((user, i) => (
                                     <tr key={user.id}>
-                                        <td>{++count}</td>
+                                        <td>{i + 1}</td>
                                         <td>
                                             <Link
                                                 to={`/profile/${user.id}`}
@@ -195,13 +194,13 @@ const UserListScreen = () => {
                                 ))}
                             </tbody>
                         </Table>
-                        <div class='d-flex justify-content-center'>
+                        <div className='d-flex justify-content-center'>
                             <Pagination>
                                 {[...Array(totalPages)].map((e, i) => (
                                     <Pagination.Item
                                         key={i}
                                         active={i === usersPageNumber}
-                                        onClick={(e) =>
+                                        onClick={() =>
                                             setUsersPageNumber(i + 1)
                                         }>
                                         {i + 1}

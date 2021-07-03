@@ -8,12 +8,10 @@ import { useContext } from 'react'
 import storeContext from '../components/Store'
 
 const UpdateProfileScreen = () => {
-    const { userInfo } = useContext(storeContext)
-
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
 
-    const { token, setUserInfo } = useContext(storeContext)
+    const { token, userInfo, setUserInfo } = useContext(storeContext)
 
     const [error, setError] = useState('')
 

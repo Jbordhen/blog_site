@@ -36,7 +36,10 @@ class UserController extends Controller
         $users = $search ? DB::table('users')->where('name', 'like', '%' . $search . '%')->orWhere('email', 'like', '%' . $search . '%')->orWhere('website', 'like', '%' . $search . '%')->orderBy($field, $sort)->skip($skip)->limit($pageSize)->get()
             : DB::table('users')->orderBy($field, $sort)->skip($skip)->limit($pageSize)->get();
 
-        return ['users' => $users, 'totalPages' => $totalPages];
+        $totalPages = $search ? DB::table('users')->where('name', 'like', '%' . $search . '%')->orWhere('email', 'like', '%' . $search . '%')->orWhere('website', 'like', '%' . $search . '%')->count()
+            : User::count();
+
+        return ['users' => $users, 'totalPages' => $totalPages / $pageSize];
     }
 
     /**

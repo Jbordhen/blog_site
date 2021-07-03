@@ -30,10 +30,6 @@ const MyProfileScreen = () => {
     }
 
     useEffect(() => {
-        if (!token) {
-            history.push('/login')
-            // console.log(token)
-        }
         const config = {
             headers: {
                 Authorization: 'Bearer ' + token
@@ -49,11 +45,12 @@ const MyProfileScreen = () => {
             } catch (err) {
                 // console.log(token)
                 // console.log(err.response)
-                setError(err.response.data)
+                setError(err.response.data.error)
             }
         }
-        getProfile()
-    }, [history, setProfile, token])
+        token ? getProfile() : history.push('/login')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [history, token])
 
     return (
         <Container className='d-flex flex-column'>

@@ -38,7 +38,7 @@ const ProfileScreen = ({ match }) => {
             } catch (err) {
                 // console.log(token)
                 // console.log(err.response)
-                setError(err.response.data)
+                setError(err.response.data.error)
             }
         }
         getProfile()

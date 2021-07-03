@@ -54,7 +54,7 @@ const LoginScreen = () => {
             <Form onSubmit={submitHandler}>
                 <Form.Group>
                     <Form.Label>Username or Email Address</Form.Label>
-                    {error['user_info'] && (
+                    {error?.user_info && (
                         <p className='text-danger my-0'>{error.user_info}</p>
                     )}
                     <Form.Control
@@ -67,7 +67,7 @@ const LoginScreen = () => {
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Password</Form.Label>
-                    {error['password'] && (
+                    {error?.password && (
                         <p className='text-danger my-0'>{error.password}</p>
                     )}
                     <Form.Control

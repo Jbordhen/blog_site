@@ -30,7 +30,8 @@ const HomeScreen = () => {
             } catch (err) {}
         }
         getPost()
-    }, [setPosts, message])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <Container>
@@ -38,9 +39,8 @@ const HomeScreen = () => {
                 Create Post
             </Button>
             <CardGroup className='px-3 px-md-5 py-2 d-flex flex-column'>
-                {posts.map((post) => (
-                    <Post post={post} key={post.id} />
-                ))}
+                {posts &&
+                    posts.map((post) => <Post post={post} key={post.id} />)}
             </CardGroup>
             <div className='d-flex justify-content-center'>
                 {!message && (

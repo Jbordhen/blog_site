@@ -18,7 +18,7 @@ class PostController extends Controller
     {
         $count = $request->query('count', 0);
         $post = Post::with(['user'])->latest()->skip($count * 10)->limit(10)->get();
-        return (Post::count() > $count * 2) ? $post : ['message' => 'You have reached the end.'];
+        return $post;
     }
 
     /**
